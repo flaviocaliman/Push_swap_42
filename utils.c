@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 11:25:02 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/09 23:57:02 by caliman          ###   ########.fr       */
+/*   Created: 2024/05/09 23:04:04 by caliman           #+#    #+#             */
+/*   Updated: 2024/05/09 23:18:34 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+void    free_stack(t_stack_node **stack)
 {
-    t_stack_node    *stack_a;
-    t_stack_node    *stack_b;
-    int             *size;
+    t_stack_node    *tmp;
 
-    if (argc < 2)
-        return (0);
-    if (!check_params(argc, argv))
-        error_exit (NULL, NULL);
-    remove_extra_zero(argv);
-    stack_a = init_stack_a(argc, argv);
-    stack_b = NULL;
-    size = stack_len(stack_a);
-    get_main_index(stack_a, size);
-    push_
+    while (*stack)
+    {
+        tmp = *stack;
+        *stack = (*stack)->next;
+        free(tmp);
+        *stack = tmp;
+    }
+    *stack = NULL;
+}
+
+void    error_exit(t_stack_node **a, t_stack_node **b)
+{
+    if (a)
+        free_stack(a);
+    if (b)
+        free_stack(b);
+    write(2, "Error\n", 6);
+    exit(1);
 }
