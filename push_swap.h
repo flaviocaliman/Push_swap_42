@@ -3,31 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:08:09 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/01 11:21:40 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/07 21:15:13 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdbool.h>
+# include <stdio.h>
 # include <limits.h>
-# include "..libft/libft.h"
-# include "..libft/ft_printf.h"
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_stack_node
 {
     int                 nbr;
     int                 index;
-    int                 push_cost;
-    bool                above_median;
-    bool                cheapest;
-    struct s_stack_node *target_node;
+    int                 position;
+    int                 where_fit;
+    int                 mv_a;
+    int                 mv_b;
     struct s_stack_node *next;
-    struct s_stack_node *prev;
 }   t_stack_node;
 
 //Handle erros
