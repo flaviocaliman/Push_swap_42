@@ -6,7 +6,7 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:33:59 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/10 00:34:22 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/10 23:46:32 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,26 @@ void	get_main_index(t_stack_node *stack, int size)
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv)
+t_stack_node	*init_stack_a(int argc, char **argv)
 {
-	long	n;
-	int		i;
+	t_stack_node	*stack_a;
+	long int		nbr;
+	int				i;
 
-	i = 0;
-	while (argv[i])
+	stack_a = NULL;
+	i = argc - 1;
+	while (i > 0)
 	{
-		if (error_syntax(argv[1]))
-			free_erros(a);
-		n = ft_atol(argv[i]);
-		if (n > INT_MAX || n < INT_MIN)
-			free_erros(a);
-		if (error_duplicate(*a, (int)n))
-			free_erros(a);
-		append_node(a, (int)n);
-		i++;
+		if (!is_nbr(argv[i]))
+			error_exit(&stack_a, NULL);
+		nbr = ft_atoi(argv[i]);
+		if (nbr > INT_MAX || nbr < INT_MIN)
+			error_exit(&stack_a, NULL);
+		if (!stack_a)
+			stack_a = stack_new(nbr);
+		else
+			stack_add_front(&stack_a, stack_new(nbr));
+		i--;
 	}
 }
 

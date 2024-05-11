@@ -6,11 +6,35 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:25:02 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/09 23:57:02 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/11 00:46:58 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	is_sorted(t_stack_node *stack)
+{
+    t_stack_node    *tmp;
+
+    tmp = stack;
+    while (tmp->next)
+    {
+        if (tmp->nbr > tmp->next->nbr)
+            return (0);
+        tmp = tmp->next;
+    }
+    return (1);
+}
+
+static void	push_swap(t_stack_node **stack_a, t_stack_node **stack_b, int size)
+{
+	if (size == 2 && !is_sorted(*stack_a))
+		swap_move(stack_a, NULL, "sa");
+	else if (size == 3)
+		small_sort(stack_a);
+	else if (size > 3 && !is_sorted(*stack_a))
+		big_sort(stack_a, stack_b);
+}
 
 int main(int argc, char **argv)
 {
@@ -27,5 +51,6 @@ int main(int argc, char **argv)
     stack_b = NULL;
     size = stack_len(stack_a);
     get_main_index(stack_a, size);
-    push_
+    push_swap(&stack_a, &stack_b, size);
 }
+ 
