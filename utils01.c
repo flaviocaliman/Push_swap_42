@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils01.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:04:04 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/10 23:12:08 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/13 20:09:48 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ int	ft_strcmp(char *s1, char *s2)
 		s2++;
 	}
 	return (*s1 - *s2);
+}
+
+int	stack_len(t_stack_node *stack)
+{
+	int				len;
+	t_stack_node	*tmp;
+
+	len = 0;
+	tmp = stack;
+	while (tmp)
+	{
+		len++;
+		tmp = tmp->next;
+	}
+	return (len);
 }
 
 void    free_stack(t_stack_node **stack)

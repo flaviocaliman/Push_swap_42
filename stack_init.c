@@ -6,7 +6,7 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:33:59 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/10 23:46:32 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/13 23:31:27 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,3 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 	}
 }
 
-int	stack_len(t_stack_node *stack)
-{
-	int				len;
-	t_stack_node	*tmp;
-
-	len = 0;
-	tmp = stack;
-	while (tmp)
-	{
-		len++;
-		tmp = tmp->next;
-	}
-	return (len);
-}

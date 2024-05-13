@@ -6,7 +6,7 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 20:55:48 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/09 22:52:23 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/13 20:06:18 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int  is_int(char *str)
 {
     long    n;
 
-    n = ft_atol(str);
+    n = ft_atoi(str);
     if (n > INT_MAX || n < INT_MIN)
         return (0);
     return (1);
