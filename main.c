@@ -6,7 +6,7 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 11:25:02 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/12 00:21:30 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/14 20:42:28 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void	push_swap(t_stack_node **stack_a, t_stack_node **stack_b, int size)
 {
 	if (size == 2 && !is_sorted(*stack_a))
 		swap_move(stack_a, NULL, "sa");
-	//else if (size == 3)
-	//	small_sort(stack_a);
+	else if (size == 3)
+		small_sort(stack_a);
 	//else if (size > 3 && !is_sorted(*stack_a))
 	//	big_sort(stack_a, stack_b);
 }

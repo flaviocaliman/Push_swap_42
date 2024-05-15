@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_01.c                                           :+:      :+:    :+:   */
+/*   ops01.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:03:12 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/10 22:46:04 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/14 23:58:20 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
 
 static void    swap(t_stack_node **stack)
 {
@@ -53,4 +55,13 @@ void    swap_move(t_stack_node **stack_a, t_stack_node **stack_b, char *str)
         push(stack_b, stack_a);
     ft_putstr(str);
     ft_putstr("\n");
+}
+
+void    small_sort(t_stack_node **stack)
+{
+    int max_index;
+
+    if (is_sorted(*stack))
+        return ;
+    
 }
