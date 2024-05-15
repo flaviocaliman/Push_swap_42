@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ops01.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:03:12 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/14 23:58:20 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/15 18:28:53 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
 
 static void    swap(t_stack_node **stack)
 {
@@ -38,7 +36,7 @@ static void    push(t_stack_node **stack_a, t_stack_node **stack_b)
     *stack_a = tmp;
 }
 
-void    swap_move(t_stack_node **stack_a, t_stack_node **stack_b, char *str)
+void    swap_x(t_stack_node **stack_a, t_stack_node **stack_b, char *str)
 {
     if (ft_strcmp(str, "sa") == 0)
         swap(stack_a);
@@ -63,5 +61,21 @@ void    small_sort(t_stack_node **stack)
 
     if (is_sorted(*stack))
         return ;
-    
+    max_index = get_max_index(*stack);
+    if ((*stack)->index == max_index)
+        rotate_x(stack, NULL, "ra");
+    else if ((*stack)->next->index == max_index)
+        rotate_x(stack, NULL, "rra");
+    if ((*stack)->index > (*stack)->next->index)
+        swap_x(stack, NULL, "sa");
+}
+
+static void	push_swap(t_stack_node **stack_a, t_stack_node **stack_b, int size)
+{
+	if (size == 2 && !is_sorted(*stack_a))
+		swap_x(stack_a, NULL, "sa");
+	else if (size == 3)
+		small_sort(stack_a);
+	else if (size > 3 && !is_sorted(*stack_a))
+		big_sort(stack_a, stack_b);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils02.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:57:11 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/13 20:08:56 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/15 17:26:33 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,25 @@ long int	ft_atoi(const char *s)
 		s++;
 	}
 	return (sg * r);
+}
+
+int	is_sorted(t_stack_node *stack)
+{
+    t_stack_node    *tmp;
+
+    tmp = stack;
+    while (tmp->next)
+    {
+        if (tmp->nbr > tmp->next->nbr)
+            return (0);
+        tmp = tmp->next;
+    }
+    return (1);
+}
+
+int	absolute(int n)
+{
+	if (n < 0)
+		return (n * -1);
+	return (n);
 }
