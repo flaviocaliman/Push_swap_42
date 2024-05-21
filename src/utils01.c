@@ -6,7 +6,7 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:04:04 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/13 20:09:48 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 00:48:00 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,24 @@ int	stack_len(t_stack_node *stack)
 
 void    free_stack(t_stack_node **stack)
 {
-    t_stack_node    *tmp;
+    t_stack_node	*temp;
 
-    while (*stack)
-    {
-        tmp = *stack;
-        *stack = (*stack)->next;
-        free(tmp);
-        *stack = tmp;
-    }
-    *stack = NULL;
+	if (!stack || !(*stack))
+		return ;
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
+	*stack = NULL;
 }
 
 void    error_exit(t_stack_node **a, t_stack_node **b)
 {
-    if (a)
+    if (!a || *a)
         free_stack(a);
-    if (b)
+    if (!b || *b)
         free_stack(b);
     write(2, "Error\n", 6);
     exit(1);

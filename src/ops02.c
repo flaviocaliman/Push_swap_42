@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops02.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:49:50 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/15 18:30:22 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:19:27 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,26 @@ static void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	int	i;
 	int	pushed;
 
-	size = stack_len(*stack_a);
+	size = stack_len(*stack_a);//utils01.c
 	i = 0;
 	pushed = 0;
 	while (i < size && pushed < size / 2 && size > 6)
 	{
 		if ((*stack_a)->index <= size / 2)
 		{
-			swap_x(stack_b, stack_a, "pb");
+			swap_x(stack_b, stack_a, "pb");//swap.c
 			pushed++;
 		}
 		else
-			rotate_x(stack_a, NULL, "ra");
+			rotate_x(stack_a, NULL, "ra");//rotate01.c
 		i++;
 	}
 	while (size - pushed > 3)
 	{
-		swap_x(stack_b, stack_a, "pb");
+		swap_x(stack_b, stack_a, "pb");//swap.c
 		pushed++;
 	}
-	small_sort(stack_a);
+	small_sort(stack_a);//ops01.c
 }
 
 //retorna a posição do nó com maior indice a ser movido
@@ -110,9 +110,9 @@ void	big_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 	while (stack_b)
 	{
 		where_fit_in_a(stack_a, stack_b);
-		calculate_moves(stack_a, stack_b);
-		less_moves_sort(stack_a, stack_b);
+		calculate_moves(stack_a, stack_b);//ops03.c
+		less_moves_sort(stack_a, stack_b);//ops03.c
 	}
-	if (is_sorted(*stack_a))
-		last_rotates(stack_a);
+	if (is_sorted(*stack_a))//utils02.c
+		last_rotates(stack_a);//ops03.c
 }

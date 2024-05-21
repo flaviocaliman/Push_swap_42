@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils02.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:57:11 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/15 17:26:33 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/18 14:03:32 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,21 @@ int	absolute(int n)
 	if (n < 0)
 		return (n * -1);
 	return (n);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

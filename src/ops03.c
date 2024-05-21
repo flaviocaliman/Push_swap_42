@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops03.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:09:09 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/15 18:39:27 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/18 11:38:47 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	calculate_moves(t_stack_node **stack_a, t_stack_node **stack_b)
 
 	a = *stack_a;
 	b = *stack_b;
-	stack_a_len = stack_len(*stack_a);
-	stack_b_len = stack_len(*stack_b);
+	stack_a_len = stack_len(a);//utils01.c
+	stack_b_len = stack_len(b);//utils01.c
 	while (b)
 	{
 		b->mv_b = b->position;
@@ -36,27 +36,7 @@ void	calculate_moves(t_stack_node **stack_a, t_stack_node **stack_b)
 	}
 }
 
-static void	rr(t_stack_node **stack_a, t_stack_node **stack_b, int *mv_a, int *mv_b)
-{
-	while (*mv_a > 0 && *mv_b > 0)
-	{
-		(*mv_a)--;
-		(*mv_b)--;
-		rotate_x(stack_a, stack_b, "rr");
-	}
-}
-
-static void	rrr(t_stack_node **stack_a, t_stack_node **stack_b, int *mv_a, int *mv_b)
-{
-	while (*mv_a < 0 && *mv_b < 0)
-	{
-		(*mv_a)++;
-		(*mv_b)++;
-		rotate_x(stack_a, stack_b, "rrr");
-	}
-}
-
-void	less_moves(t_stack_node **stack_a, t_stack_node **stack_b)
+void	less_moves_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	t_stack_node	*b;
 	int				min_moves;
@@ -67,16 +47,52 @@ void	less_moves(t_stack_node **stack_a, t_stack_node **stack_b)
 	min_moves = INT_MAX;
 	while (b)
 	{
-		if (absolute(b->mv_a) + absolute(b->mv_b) < absolute(min_moves))
+		if (absolute(b->mv_a) + absolute(b->mv_b) < absolute(min_moves))//utils02.c
 		{
-			min_moves = absolute(b->mv_a) + absolute(b->mv_b);
+			min_moves = absolute(b->mv_a) + absolute(b->mv_b);//utils02.c
 			mv_a = b->mv_a;
 			mv_b = b->mv_b;
 		}
 		b = b->next;
 	}
 	if (mv_a < 0 && mv_b < 0)
-		rrr(stack_a, stack_b, &mv_a, &mv_b);
+		rrr(stack_a, stack_b, &mv_a, &mv_b);//rotate01.c
 	else if (mv_a > 0 && mv_b > 0)
-		rr(stack_a, stack_b, &mv_a, &mv_b);
+		rr(stack_a, stack_b, &mv_a, &mv_b);//rotate01.c
+	rotate_a(stack_a, &mv_a);//rotate02.c
+	rotate_b(stack_b, &mv_b);//rotate02.c
+	swap_x(stack_a, stack_b, "pa");//swap.c
+}
+
+int	get_lower_position(t_stack_node *stack, int size)
+{
+	t_stack_node	*tmp;
+	int				lower_position;
+
+	tmp = stack;
+	lower_position = 0;
+	while (tmp)
+	{
+		if (tmp->position < lower_position)
+			lower_position = tmp->position;
+		tmp = tmp->next;
+	}
+	if (lower_position < 0)
+		lower_position += size;
+	return (lower_position);
+}
+
+void	last_rotates(t_stack_node **stack_a)
+{
+	int	size;
+	int	lower_position;
+
+	size = stack_len(*stack_a);//utils01.c
+	lower_position = get_lower_position(*stack_a, size);
+	if (lower_position <= size / 2)
+		while (lower_position--)
+			rotate_x(stack_a, NULL, "ra");//rotate01.c
+	else
+		while (lower_position++ < size)
+			rotate_x(stack_a, NULL, "rra");//rotate01.c
 }
