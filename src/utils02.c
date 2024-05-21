@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils02.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 19:57:11 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/18 14:03:32 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:13:29 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ int	is_sorted(t_stack_node *stack)
     return (1);
 }
 
-int	absolute(int n)
+int	absolute(int nbr)
 {
-	if (n < 0)
-		return (n * -1);
-	return (n);
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
 }
 
 int	ft_isdigit(int c)

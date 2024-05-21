@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:33:59 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/21 01:28:02 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:01:32 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 			stack_a = stack_new_node((int)nbr);
 		else
 			stack_add_end(&stack_a, stack_new_node((int)nbr));
-		i--;
+		i++;
 	}
 	return (stack_a);
 }

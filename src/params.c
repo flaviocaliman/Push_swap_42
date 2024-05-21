@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   params.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 20:55:48 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/19 11:42:01 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:32:53 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,6 @@ int is_nbr(char *str)
 	i++;
 }
 */
-
-/*
-int  is_nbr(char *str)
-{
-    while (*str)
-    {
-        if (*str == '-' || *str == '+')
-            str++;
-        while (*str)
-        {
-            if (!(*str >= '0' && *str <= '9'))
-                return (0);
-            str++;
-        }
-    }
-    return (1);
-}*/
 
 bool	is_int(char *str)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops02.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:49:50 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/17 10:19:27 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:39:14 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	{
 		if ((*stack_a)->index <= size / 2)
 		{
-			swap_x(stack_b, stack_a, "pb");//swap.c
+			swap_x(stack_a, stack_b, "pb");//swap.c
 			pushed++;
 		}
 		else
@@ -34,7 +34,7 @@ static void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
 	}
 	while (size - pushed > 3)
 	{
-		swap_x(stack_b, stack_a, "pb");//swap.c
+		swap_x(stack_a, stack_b, "pb");//swap.c
 		pushed++;
 	}
 	small_sort(stack_a);//ops01.c
@@ -107,7 +107,7 @@ void	where_fit_in_a(t_stack_node **stack_a, t_stack_node **stack_b)
 void	big_sort(t_stack_node **stack_a, t_stack_node **stack_b)
 {
 	push_to_b(stack_a, stack_b);
-	while (stack_b)
+	while (*stack_b)
 	{
 		where_fit_in_a(stack_a, stack_b);
 		calculate_moves(stack_a, stack_b);//ops03.c

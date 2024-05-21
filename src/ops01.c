@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops01.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:03:12 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/21 01:02:44 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 12:09:41 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int  get_max_index(t_stack_node *stack)
 
 	max_index = stack->index;
 	tmp = stack;
-	while (stack)
+	while (tmp)
 	{
 		if (tmp->index > max_index)
 			max_index = tmp->index;

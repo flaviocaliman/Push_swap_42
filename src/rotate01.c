@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   rotate01.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 18:36:53 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/18 11:23:55 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 14:25:46 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	reverse_rotate(t_stack_node **first)
+static void	reverse_rotate(t_stack_node **stack)
 {
-	t_stack_node	*tmp;
-	t_stack_node	*last;
+	t_stack_node	*hold_bottom;
+	t_stack_node	*hold_last;
 
-	tmp = *first;
-	while (tmp->next->next)
-		tmp = tmp->next;
-	last = tmp->next;
-	tmp->next = NULL;
-	last->next = *first;
-	*first = last;
+	hold_bottom = *stack;
+	hold_last = NULL;
+	while (hold_bottom->next)
+	{
+		if (!hold_bottom->next->next)
+		{
+			hold_last = hold_bottom->next;
+			hold_bottom->next = NULL;
+			break ;
+		}
+		hold_bottom = hold_bottom->next;
+	}
+	hold_last->next = *stack;
+	*stack = hold_last;
 }
 
 static void	rotate(t_stack_node **first)
