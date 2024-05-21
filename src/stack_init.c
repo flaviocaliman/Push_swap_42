@@ -6,52 +6,30 @@
 /*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:33:59 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/20 13:05:49 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/21 01:28:02 by caliman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*void	get_main_index(t_stack_node *stack, int size)
-{
-	t_stack_node	*tmp;
-	int				i;
-	int				j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		tmp = stack;
-		while (tmp)
-		{
-			if (tmp->nbr == i)
-				tmp->index = j;
-			j++;
-			tmp = tmp->next;
-		}
-		i++;
-	}
-}*/
-
 void	get_main_index(t_stack_node *stack_a, int size)//walter's code
 {
 	t_stack_node	*tmp;
 	t_stack_node	*max_add;
-	int				max_n;
+	int				max_nbr;
 
 	while (size--)
 	{
 		tmp = stack_a;
-		max_n = INT_MIN;
+		max_nbr = INT_MIN;
 		max_add = NULL;
 		while (tmp)
 		{
 			if (tmp->nbr == INT_MIN && tmp->index == 0)
 				tmp->index = 1;
-			else if (tmp->nbr > max_n && tmp->index == 0)
+			else if (tmp->nbr > max_nbr && tmp->index == 0)
 			{
-				max_n = tmp->nbr;
+				max_nbr = tmp->nbr;
 				max_add = tmp;
 				tmp = stack_a;
 			}
@@ -63,13 +41,13 @@ void	get_main_index(t_stack_node *stack_a, int size)//walter's code
 	}
 }
 
-static t_stack_node	*stack_new_node(int nbr)
+t_stack_node	*stack_new_node(int nbr)
 {
 	t_stack_node	*new_node;
 
 	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
 	if (!new_node)
-		error_exit(NULL, NULL);
+		return (NULL);
 	new_node->nbr = nbr;
 	new_node->index = 0;
 	new_node->position = -1;
@@ -104,8 +82,9 @@ t_stack_node	*init_stack_a(int argc, char **argv)
 	int				i;
 
 	stack_a = NULL;
-	i = argc - 1;
-	while (i > 0)
+	nbr = 0;
+	i = 1;
+	while (i < argc)
 	{
 		nbr = ft_atoi(argv[i]);//utils02.c
 		if (nbr > INT_MAX || nbr < INT_MIN)
