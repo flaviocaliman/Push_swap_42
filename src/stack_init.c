@@ -6,17 +6,17 @@
 /*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:33:59 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/21 14:01:32 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 21:07:44 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	get_main_index(t_stack_node *stack_a, int size)//walter's code
+void	get_main_index(t_stack *stack_a, int size)//walter's code
 {
-	t_stack_node	*tmp;
-	t_stack_node	*max_add;
-	int				max_nbr;
+	t_stack	*tmp;
+	t_stack	*max_add;
+	int		max_nbr;
 
 	while (size--)
 	{
@@ -41,11 +41,11 @@ void	get_main_index(t_stack_node *stack_a, int size)//walter's code
 	}
 }
 
-t_stack_node	*stack_new_node(int nbr)
+t_stack	*stack_new_node(int nbr)
 {
-	t_stack_node	*new_node;
+	t_stack	*new_node;
 
-	new_node = (t_stack_node *)malloc(sizeof(t_stack_node));
+	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
 	new_node->nbr = nbr;
@@ -58,10 +58,10 @@ t_stack_node	*stack_new_node(int nbr)
 	return (new_node);
 }
 
-static void	stack_add_end(t_stack_node **stack, t_stack_node *new_node)
+static void	stack_add_end(t_stack **stack, t_stack *new_node)
 {
-	t_stack_node	*tmp;
-	
+	t_stack	*tmp;
+
 	if (!new_node)
 		return ;
 	if (!*stack)
@@ -75,20 +75,20 @@ static void	stack_add_end(t_stack_node **stack, t_stack_node *new_node)
 	}
 }
 
-t_stack_node	*init_stack_a(int argc, char **argv)
+t_stack	*init_stack_a(int argc, char **argv)
 {
-	t_stack_node	*stack_a;
-	long int		nbr;
-	int				i;
+	t_stack		*stack_a;
+	long int	nbr;
+	int			i;
 
 	stack_a = NULL;
 	nbr = 0;
 	i = 1;
 	while (i < argc)
 	{
-		nbr = ft_atoi(argv[i]);//utils02.c
+		nbr = ft_atoi(argv[i]);
 		if (nbr > INT_MAX || nbr < INT_MIN)
-			error_exit(&stack_a, NULL);//utils01.c
+			error_exit(&stack_a, NULL);
 		if (i == 1)
 			stack_a = stack_new_node((int)nbr);
 		else

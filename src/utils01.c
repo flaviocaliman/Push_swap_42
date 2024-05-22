@@ -3,48 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   utils01.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caliman <caliman@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 23:04:04 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/21 00:48:00 by caliman          ###   ########.fr       */
+/*   Updated: 2024/05/22 20:19:56 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-    while (*str)
-    {
-        write(1, str, 1);
-        str++;
-    }
+	while (*str)
+	{
+		write(1, &*str, 1);
+		str++;
+	}
 }
 
-int	ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *str1, char *str2)
 {
-	if (*s1 == '+')
+	if (*str1 == '+')
 	{
-		if (*s2 != '+')
-			s1++;
+		if (*str2 != '+')
+			str1++;
 	}
 	else
 	{
-		if (*s2 == '+')
-			s2++;
+		if (*str2 == '+')
+			str2++;
 	}
-	while (*s1 == *s2 && *s1)
+	while (*str1 == *str2 && *str1)
 	{
-		s1++;
-		s2++;
+		str1++;
+		str2++;
 	}
-	return (*s1 - *s2);
+	return (*str1 - *str2);
 }
 
-int	stack_len(t_stack_node *stack)
+int	stack_len(t_stack *stack)
 {
-	int				len;
-	t_stack_node	*tmp;
+	int		len;
+	t_stack	*tmp;
 
 	len = 0;
 	tmp = stack;
@@ -56,27 +56,27 @@ int	stack_len(t_stack_node *stack)
 	return (len);
 }
 
-void    free_stack(t_stack_node **stack)
+void	free_stack(t_stack **stack)
 {
-    t_stack_node	*temp;
+	t_stack	*tmp;
 
 	if (!stack || !(*stack))
 		return ;
 	while (*stack)
 	{
-		temp = (*stack)->next;
+		tmp = (*stack)->next;
 		free(*stack);
-		*stack = temp;
+		*stack = tmp;
 	}
 	*stack = NULL;
 }
 
-void    error_exit(t_stack_node **a, t_stack_node **b)
+void	error_exit(t_stack **a, t_stack **b)
 {
-    if (!a || *a)
-        free_stack(a);
-    if (!b || *b)
-        free_stack(b);
-    write(2, "Error\n", 6);
-    exit(1);
+	if (!a || *a)
+		free_stack(a);
+	if (!b || *b)
+		free_stack(b);
+	write(2, "Error\n", 6);
+	exit(1);
 }

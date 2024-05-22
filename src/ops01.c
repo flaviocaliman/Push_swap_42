@@ -6,16 +6,16 @@
 /*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 13:03:12 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/21 12:09:41 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:23:39 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int  get_max_index(t_stack_node *stack)
+static int	get_max_index(t_stack *stack)
 {
-	int             max_index;
-	t_stack_node    *tmp;
+	int			max_index;
+	t_stack		*tmp;
 
 	max_index = stack->index;
 	tmp = stack;
@@ -28,27 +28,27 @@ static int  get_max_index(t_stack_node *stack)
 	return (max_index);
 }
 
-void    small_sort(t_stack_node **stack)
+void	small_sort(t_stack **stack)
 {
-	int max_index;
+	int	max_index;
 
-	if (is_sorted(*stack))//utils02.c
+	if (is_sorted(*stack))
 		return ;
 	max_index = get_max_index(*stack);
 	if ((*stack)->index == max_index)
-		rotate_x(stack, NULL, "ra");//rotate01.c
+		rotate_x(stack, NULL, "ra");
 	else if ((*stack)->next->index == max_index)
-		rotate_x(stack, NULL, "rra");//rotate01.c
+		rotate_x(stack, NULL, "rra");
 	if ((*stack)->index > (*stack)->next->index)
-		swap_x(stack, NULL, "sa");//swap.c
+		swap_x(stack, NULL, "sa");
 }
 
-void	push_swap(t_stack_node **stack_a, t_stack_node **stack_b, int size)
+void	push_swap(t_stack **stack_a, t_stack **stack_b, int size)
 {
-	if (size == 2 && !is_sorted(*stack_a))//utils02.c
-		swap_x(stack_a, NULL, "sa");//swap.c
+	if (size == 2 && !is_sorted(*stack_a))
+		swap_x(stack_a, NULL, "sa");
 	else if (size == 3)
 		small_sort(stack_a);
-	else if (size > 3 && !is_sorted(*stack_a))//utils02.c
-		big_sort(stack_a, stack_b);//ops02.c
+	else if (size > 3 && !is_sorted(*stack_a))
+		big_sort(stack_a, stack_b);
 }

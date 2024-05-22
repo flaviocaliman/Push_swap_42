@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 10:23:28 by caliman           #+#    #+#             */
-/*   Updated: 2024/05/21 14:33:46 by fgomes-c         ###   ########.fr       */
+/*   Created: 2024/05/22 21:09:55 by fgomes-c          #+#    #+#             */
+/*   Updated: 2024/05/22 21:09:57 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    swap(t_stack_node *stack)
+void	swap(t_stack *stack)
 {
-    int	tmp;
+	int	tmp;
 
-	if (!stack || !(stack)->next)
+	if (!stack || !stack->next)
 		return ;
 	tmp = stack->nbr;
 	stack->nbr = stack->next->nbr;
@@ -26,33 +26,33 @@ void    swap(t_stack_node *stack)
 	stack->next->index = tmp;
 }
 
-void    push(t_stack_node **stack_a, t_stack_node **stack_b)
+void	push(t_stack **top_a, t_stack **top_b)
 {
-    t_stack_node    *tmp;
+	t_stack	*tmp;
 
-    if (!stack_a)
-        return ;
-    tmp = (*stack_a)->next;
-    (*stack_a)->next = *stack_b;
-    *stack_b = *stack_a;
-    *stack_a = tmp;
+	if (!top_a)
+		return ;
+	tmp = (*top_a)->next;
+	(*top_a)->next = *top_b;
+	*top_b = *top_a;
+	*top_a = tmp;
 }
 
-void    swap_x(t_stack_node **stack_a, t_stack_node **stack_b, char *str)
+void	swap_x(t_stack **stack_a, t_stack **stack_b, char *str)
 {
-    if (ft_strcmp(str, "sa") == 0)//utils01.c
-        swap(*stack_a);
-    else if (ft_strcmp(str, "sb") == 0)//utils01.c
-        swap(*stack_b);
-    else if (ft_strcmp(str, "ss") == 0)//utils01.c
-    {
-        swap(*stack_a);
-        swap(*stack_b);
-    }
-    if (ft_strcmp(str, "pa") == 0)//utils01.c
-        push(stack_b, stack_a);
-    else if (ft_strcmp(str, "pb") == 0)//utils01.c
-        push(stack_a, stack_b);
-    ft_putstr(str);//utils01.c
-    ft_putstr("\n");//utils01.c
+	if (ft_strcmp(str, "sa") == 0)
+		swap(*stack_a);
+	else if (ft_strcmp(str, "sb") == 0)
+		swap(*stack_b);
+	else if (ft_strcmp(str, "ss") == 0)
+	{
+		swap(*stack_a);
+		swap(*stack_b);
+	}
+	if (ft_strcmp(str, "pa") == 0)
+		push(stack_b, stack_a);
+	else if (ft_strcmp(str, "pb") == 0)
+		push(stack_a, stack_b);
+	ft_putstr(str);
+	ft_putstr("\n");
 }

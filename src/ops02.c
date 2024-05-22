@@ -6,44 +6,44 @@
 /*   By: fgomes-c <fgomes-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:49:50 by fgomes-c          #+#    #+#             */
-/*   Updated: 2024/05/21 14:39:14 by fgomes-c         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:26:13 by fgomes-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_to_b(t_stack_node **stack_a, t_stack_node **stack_b)
+static void	push_to_b(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 	int	i;
 	int	pushed;
 
-	size = stack_len(*stack_a);//utils01.c
+	size = stack_len(*stack_a);
 	i = 0;
 	pushed = 0;
-	while (i < size && pushed < size / 2 && size > 6)
+	while (i < size && size > 6 && pushed < size / 2)
 	{
 		if ((*stack_a)->index <= size / 2)
 		{
-			swap_x(stack_a, stack_b, "pb");//swap.c
+			swap_x(stack_a, stack_b, "pb");
 			pushed++;
 		}
 		else
-			rotate_x(stack_a, NULL, "ra");//rotate01.c
+			rotate_x(stack_a, NULL, "ra");
 		i++;
 	}
 	while (size - pushed > 3)
 	{
-		swap_x(stack_a, stack_b, "pb");//swap.c
+		swap_x(stack_a, stack_b, "pb");
 		pushed++;
 	}
-	small_sort(stack_a);//ops01.c
+	small_sort(stack_a);
 }
 
 //retorna a posição do nó com maior indice a ser movido
-int	get_a_position(t_stack_node **stack_a, int b_index, int max, int a_position)
+int	get_a_position(t_stack **stack_a, int b_index, int max, int a_position)
 {
-	t_stack_node	*tmp;
+	t_stack	*tmp;
 
 	tmp = *stack_a;
 	while (tmp)
@@ -71,10 +71,10 @@ int	get_a_position(t_stack_node **stack_a, int b_index, int max, int a_position)
 }
 
 //atribui valores de posição para cada nó da pilha
-void	get_stack_positions(t_stack_node **stack)
+void	get_stack_positions(t_stack **stack)
 {
-	t_stack_node	*tmp;
-	int				i;
+	t_stack	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = *stack;
@@ -87,10 +87,10 @@ void	get_stack_positions(t_stack_node **stack)
 }
 
 //determina onde cada nó da stack_b deve ser inserido na stack_a
-void	where_fit_in_a(t_stack_node **stack_a, t_stack_node **stack_b)
+void	where_fit_in_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack_node	*b;
-	int				a_position;
+	t_stack	*b;
+	int		a_position;
 
 	b = *stack_b;
 	get_stack_positions(stack_a);
@@ -104,15 +104,15 @@ void	where_fit_in_a(t_stack_node **stack_a, t_stack_node **stack_b)
 	}
 }
 
-void	big_sort(t_stack_node **stack_a, t_stack_node **stack_b)
+void	big_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	push_to_b(stack_a, stack_b);
 	while (*stack_b)
 	{
 		where_fit_in_a(stack_a, stack_b);
-		calculate_moves(stack_a, stack_b);//ops03.c
-		less_moves_sort(stack_a, stack_b);//ops03.c
+		calculate_moves(stack_a, stack_b);
+		less_moves_sort(stack_a, stack_b);
 	}
-	if (is_sorted(*stack_a))//utils02.c
-		last_rotates(stack_a);//ops03.c
+	if (!is_sorted(*stack_a))
+		last_rotates(stack_a);
 }
