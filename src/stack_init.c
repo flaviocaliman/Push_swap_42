@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	get_main_index(t_stack *stack_a, int size)//walter's code
+void	get_main_index(t_stack *stack_a, int size)
 {
 	t_stack	*tmp;
 	t_stack	*max_add;
